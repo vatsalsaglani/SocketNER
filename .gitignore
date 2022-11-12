@@ -1,0 +1,4 @@
+server/bert-base-NER/
+.vscode/
+__pycache__/
+.env
