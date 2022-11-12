@@ -16,11 +16,12 @@ class NERPredictor:
         """
         self.model_path = model_path
         print(f"LOADING TOKENIZER")
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_path)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_path,
+                                                       local_files_only=True)
         print(f"LOADED TOKENIZER")
         print(f"LOADING MODEL")
         self.model = AutoModelForTokenClassification.from_pretrained(
-            self.model_path)
+            self.model_path, local_files_only=True)
         print(f"LOADED MODEL")
         self.nlp_pipeline = pipeline("ner",
                                      model=self.model,
@@ -131,15 +132,7 @@ class NERPredictor:
         ner_results = self.nlp_pipeline(text)
         ner_results = self.__clean_entity__(ner_results)
         results = self.__tag_input_text__(text, ner_results)
+        results = list(
+            filter(lambda rs: len(rs.get("text").rstrip().lstrip()) > 0,
+                   results))
         return self.__combine_start_end__(text, results)
-
-
-if __name__ == "__main__":
-    pred_obj = NERPredictor("./bert-base-NER")
-    # while True:
-    text = "my name is Vatsal Saglani and I stay in Bangalore"
-    print(text)
-    print(json.dumps(pred_obj.predict_result(text), indent=4))
-    text = "I stay in Bangalore and my name is Vatsal Saglani"
-    print(text)
-    print(json.dumps(pred_obj.predict_result(text), indent=4))
