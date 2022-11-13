@@ -1,4 +1,4 @@
-# Blazing Fast NER experience with WebSockets using FastAPI
+# An incredible NER experience using WebSockets and FastAPI
 
 ![Socket NER](socker-ner-8x.gif)
 
