@@ -39,7 +39,7 @@
 
 <div class="px-4 py-5 mx-auto min-w-full min-h-screen flex flex-col justify-center items-center" >    
     <div
-      class="rounded-2xl bg-gradient-to-r from-sky-500 via-teal-600 to-indigo-500 p-1 shadow-2xl"
+      class="rounded-2xl bg-gradient-to-r from-sky-500 via-teal-600 to-indigo-500 p-1 shadow-2xl min-w-[50%] max-w-[51%]"
     >
       <div class="block rounded-xl bg-white p-6 sm:p-8">
 
